@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
       - name: user
-        image: user:v1
+        image: venkatsai12345/user:v1
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
