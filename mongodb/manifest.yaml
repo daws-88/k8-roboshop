@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: mongodb
-        image: mongodb:v1
+        image: venkatsai12345/mongodb:v1
         imagePullPolicy: Always
         readinessProbe:
            tcpSocket:
