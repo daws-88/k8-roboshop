@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: redis
-        image: redis:v1
+        image: venkatsai12345/redis:v1
         imagePullPolicy: Always
         readinessProbe:
            tcpSocket:
