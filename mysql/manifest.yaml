@@ -26,19 +26,19 @@ spec:
     # these labels are used to select pods
     matchLabels:
        project: roboshop
-       component: redis
+       component: mysql
        tier: db
   template:
     metadata:
     ## pod labels
       labels:
        project: roboshop
-       component: redis
+       component: mysql
        tier: db
     spec:
       containers:
       - name: redis
-        image: venkatsai12345/redis:v1
+        image: venkatsai12345/mysql:v1
         imagePullPolicy: Always
         # readinessProbe:
         #    tcpSocket:
@@ -63,12 +63,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: redis
+  name: mysql
   namespace: roboshop
 spec:
   selector:
     project: roboshop
-    component: redis
+    component: mysql
     tier: db
 
   ports:
