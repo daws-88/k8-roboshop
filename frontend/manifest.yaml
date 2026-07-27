@@ -103,16 +103,7 @@ spec:
         ports:
         - name: liveness-port
           containerPort: 8080
-        volumeMounts:
-          - name: nginx-config
-            mountPath: /etc/nginx/nginx.conf
-            subPath: nginx.conf
-
-      volumes:
-        - name: nginx-config
-          configMap:
-            name: frontend
-            
+           
           readinessProbe:
            httpGet:
              path: /
@@ -126,6 +117,16 @@ spec:
            failureThreshold: 1
            periodSeconds: 10
             
+        volumeMounts:
+          - name: nginx-config
+            mountPath: /etc/nginx/nginx.conf
+            subPath: nginx.conf
+
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: frontend
+         
 ---
 apiVersion: v1
 kind: Service
