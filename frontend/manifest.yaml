@@ -103,14 +103,14 @@ spec:
         ports:
         - name: liveness-port
           containerPort: 8080
-           
-          readinessProbe:
+      
+        readinessProbe:
            httpGet:
              path: /
              port: 80
            failureThreshold: 1
            periodSeconds: 10
-          livenessProbe:
+        livenessProbe:
            httpGet:
               path: /
               port: 80
