@@ -12,12 +12,12 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redis
+  name: mysql
   namespace: roboshop
    # these are replica set labels
   labels:
     project: roboshop
-    component: redis
+    component: mysql
     tier: db
 
 spec:
