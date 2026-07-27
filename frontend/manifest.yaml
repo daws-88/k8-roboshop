@@ -67,34 +67,32 @@ data:
 
         }
     }
-        
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
   namespace: roboshop
-   # these are replica set labels
+  # these are replica set labels
   labels:
     project: roboshop
     component: frontend
     tier: frontend
-
 spec:
   replicas: 1
   selector:
     # these labels are used to select pods
     matchLabels:
-       project: roboshop
-       component: frontend
-       tier: frontend
+      project: roboshop
+      component: frontend
+      tier: frontend
+  # pod definition
   template:
     metadata:
-    ## pod labels
       labels:
-       project: roboshop
-       component: frontend
-       tier: frontend
+        project: roboshop
+        component: frontend
+        tier: frontend
     spec:
       containers:
       - name: frontend
@@ -103,30 +101,26 @@ spec:
         ports:
         - name: liveness-port
           containerPort: 8080
-      
         readinessProbe:
-           httpGet:
-             path: /
-             port: 80
-           failureThreshold: 1
-           periodSeconds: 10
+          httpGet:
+            path: /
+            port: liveness-port
+          failureThreshold: 1
+          periodSeconds: 15
         livenessProbe:
-           httpGet:
-              path: /
-              port: 80
-           failureThreshold: 1
-           periodSeconds: 10
-            
+          httpGet:
+            path: /
+            port: liveness-port
+          failureThreshold: 1
+          periodSeconds: 15
         volumeMounts:
-          - name: nginx-config
-            mountPath: /etc/nginx/nginx.conf
-            subPath: nginx.conf
-
-      volumes:
         - name: nginx-config
-          configMap:
-            name: frontend
-         
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+      volumes:
+      - name: nginx-config
+        configMap:
+          name: frontend
 ---
 apiVersion: v1
 kind: Service
@@ -139,9 +133,7 @@ spec:
     project: roboshop
     component: frontend
     tier: frontend
-
   ports:
     - protocol: TCP
-      port: 80 ## service port
-      targetPort: 8080 ## container port
-
+      port: 80 # service port
+      targetPort: 8080 # container port
