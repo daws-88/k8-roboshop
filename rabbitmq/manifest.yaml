@@ -32,12 +32,13 @@ spec:
         readinessProbe:
            tcpSocket:
               port: 5672
-           initialDelaySeconds: 10
+           initialDelaySeconds: 5
            periodSeconds: 10
         livenessProbe:
             tcpSocket:
               port: 5672
-            initialDelaySeconds: 5
+            initialDelaySeconds: 10
+            
             periodSeconds: 5
 
 ---
